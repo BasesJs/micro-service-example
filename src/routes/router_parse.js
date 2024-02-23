@@ -1,6 +1,7 @@
 import { parseName } from "../components/parseName.js";
 import express, { response } from "express";
 import bodyParser from "body-parser";
+import { v4 as uuidv4 } from 'uuid';
 const jsonParser = bodyParser.json();
 const router = express.Router();
 export { router as NameRouter };
@@ -21,5 +22,8 @@ router.get("/parse", (req, res) => {
   });
 
   router.post("/parse", jsonParser, (req, res) => {
-    res.send(parseName(req.body.datum.value));
+    //parseName(req.body.datum.value)
+    res.send({
+        taskId: uuidv4()
+    });
   });
